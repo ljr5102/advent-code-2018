@@ -1,4 +1,3 @@
-require 'byebug'
 def double_frequency_finder
   frequencies_found = Hash.new(0)
   frequencies_found[0] += 1
