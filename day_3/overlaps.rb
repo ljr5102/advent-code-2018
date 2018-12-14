@@ -6,8 +6,8 @@ def overlaps
     y = parsed[:y]
     width = parsed[:width]
     height = parsed[:height]
-    y.upto(y + height) do |y_idx|
-      x.upto(x + width) do |x_idx|
+    y.upto(y + (height - 1)) do |y_idx|
+      x.upto(x + (width - 1)) do |x_idx|
         total_fabric[y_idx][x_idx] += 1
       end
     end
@@ -19,8 +19,8 @@ def parsed_sample(sample)
   split_sample = sample.strip.split("@")
   id = split_sample[0].strip.gsub("#",'').to_i
   parsed = split_sample[1].strip.split(":").map(&:strip)
-  x, y = parsed[0].split(",").map { |val| val.to_i - 1 }
-  width, height = parsed[1].split("x").map { |val| val.to_i - 1 }
+  x, y = parsed[0].split(",").map(&:to_i)
+  width, height = parsed[1].split("x").map(&:to_i)
   { id: id, x: x, y: y, width: width, height: height }
 end
 
