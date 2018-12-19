@@ -1,4 +1,3 @@
-require 'byebug'
 def step_order
   order = steps_with_prereqs
   completed = []
