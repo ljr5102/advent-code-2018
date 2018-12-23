@@ -193,5 +193,17 @@ def op_code_to_operation
   codes_to_op
 end
 
+def run_sample_program
+  code_to_ops = op_code_to_operation
+  test_program = File.readlines('./test_program.txt').map(&:strip).map { |line| line.split(" ").map(&:to_i) }
+  registers = [0, 0, 0, 0]
+  test_program.each do |instruction|
+    op = code_to_ops[instruction.first]
+    registers = self.send(op, registers, instruction)
+  end
+  registers
+end
+
+
 p samples_with_three_or_more_ops
-p op_code_to_operation
+p run_sample_program
